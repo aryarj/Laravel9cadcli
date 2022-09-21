@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ClienteController::class, 'index'])->name('novosclientes');
+Route::get('/', [ClienteController::class, 'index'])->name('novocliente');
+Route::post('/clienteStore', [ClienteController::class, 'store'])->name('cliente.store');
 
 //Route::get('/', function () {
 //    return view('welcome');
