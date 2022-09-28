@@ -1,4 +1,4 @@
-@extends('app')
+@extends('modelos.app')
 
 @section('title','Listagem')
 
@@ -13,9 +13,15 @@
         {{$c->name}} - 
         {{$c->cpf}} - 
         {{$c->email}}
+        | <button onclick="window.location.href='{{route('cliente.edit',$c->id)}}';">
+            Editar cliente
+        </button>
+        
     </li>
 
     
 @endforeach
+<br>
+{{$cliente->links()}}
 
 @endsection

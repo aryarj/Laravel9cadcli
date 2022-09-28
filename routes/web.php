@@ -18,7 +18,9 @@ Route::get('/', [ClienteController::class, 'incluir'])->name('novocliente');
 Route::post('/clienteStore', [ClienteController::class, 'store'])->name('cliente.store');
 Route::get('/clienteStore2', [ClienteController::class, 'store2'])->name('cliente.store2');
 Route::get('/index', [ClienteController::class, 'index'])->name('index');
+Route::get('/cliente/{id}/edit', [ClienteController::class, 'edit'])->name('cliente.edit');
+Route::put('/cliente/{id}', [ClienteController::class, 'update'])->name('cliente.update');
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/w', function () {
+    return view('welcome');
+});

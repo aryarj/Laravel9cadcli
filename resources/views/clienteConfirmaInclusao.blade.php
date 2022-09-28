@@ -1,4 +1,4 @@
-@extends('app')
+@extends('modelos.app')
 
 @section('title','Confirmação')
 
