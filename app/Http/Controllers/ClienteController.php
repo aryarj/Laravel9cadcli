@@ -8,13 +8,6 @@ use App\Models\Cliente;
 class ClienteController extends Controller
 {
 
-    /*protected $model;
-
-    public function __construct(Cliente $cliente)
-    {
-      $this->model = $cliente;
-    }*/
-
     public function incluir()
     {
         return view('clientes');
@@ -67,5 +60,27 @@ class ClienteController extends Controller
       $cliente->update($request->all());
 
       return redirect()->route('index');
+    }
+
+    public function delete($id)
+    {
+      if(!$cliente=Cliente::find($id))
+      {
+        return view('index');
+      }
+      
+      return view('clienteConfirmaExclusao', compact('cliente'));
+    }
+
+    public function delete2($id)
+    {
+      if(!$cliente=Cliente::find($id))
+      {
+        return view('index');
+      }
+
+      $cliente->delete();
+      
+      return view('clienteConfirmaExclusao2');
     }
 }

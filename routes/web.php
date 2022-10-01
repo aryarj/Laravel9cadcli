@@ -20,6 +20,8 @@ Route::get('/clienteStore2', [ClienteController::class, 'store2'])->name('client
 Route::get('/index', [ClienteController::class, 'index'])->name('index');
 Route::get('/cliente/{id}/edit', [ClienteController::class, 'edit'])->name('cliente.edit');
 Route::put('/cliente/{id}', [ClienteController::class, 'update'])->name('cliente.update');
+Route::get('/cliente/{id}', [ClienteController::class, 'delete'])->name('cliente.delete');
+Route::delete('/cliente/{id}', [ClienteController::class, 'delete2'])->name('cliente.delete2');
 
 Route::get('/w', function () {
     return view('welcome');

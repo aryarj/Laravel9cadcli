@@ -5,8 +5,8 @@
 @section('content')
 
     <script language='javascript' type='text/javascript'>
-    alert('Cliente cadastrado com sucesso!');
-    window.location.href="{{route('novocliente')}}";
+    alert('Cliente excluído com sucesso!');
+    window.location.href="{{route('index')}}";
     </script>
 
 @endsection

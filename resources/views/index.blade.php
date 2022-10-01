@@ -16,6 +16,9 @@
         | <button onclick="window.location.href='{{route('cliente.edit',$c->id)}}';">
             Editar cliente
         </button>
+        | <button onclick="window.location.href='{{route('cliente.delete',$c->id)}}';">
+            Apagar cliente
+        </button>
         
     </li>
 
