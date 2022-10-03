@@ -29,10 +29,22 @@ class ClienteController extends Controller
     public function index(Request $request)
     {
         //Uma das formas de pesquisar por filtro
-        //E ordenando na ordem decrescente
+        $search=$request->search;
+        //E ordenando na ordem crescente do nome
         //Se quiser paginar, utilizar a função paginate() no final ao invéz de get()
-        $cliente = Cliente::where('name', 'LIKE',"%{$request->search}%")
-        ->orderby('name','ASC')->paginate(5);
+        //$cliente = Cliente::where('name', 'LIKE',"%{$request->search}%")
+        //->orderby('name','ASC')->paginate(5);
+
+        $cliente = Cliente::where(function ($query) use ($search)
+        {
+          if($search)
+          {
+            $query->where('name', 'LIKE',"%{$search}%");
+            $query->orWhere('email', 'LIKE',"%{$search}%");
+            $query->orWhere('cpf', 'LIKE',"%{$search}%");
+          }
+          
+        })->paginate(5);
         
         //$cliente = Cliente::paginate(5);//funciona também como o: $cliente = DB::table('clientes')->paginate((5));
         // mas nesse último caso precisará chamar no início: use Illuminate\Support\Facades\DB;

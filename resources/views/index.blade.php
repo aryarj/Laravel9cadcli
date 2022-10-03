@@ -4,6 +4,12 @@
 
 @section('content')
 <h1>Listagem de clientes</h1>
+
+<form action="{{route('index')}}" method="get">
+    <input type="text" name="search" placeholder="Pesquisar">
+    <button>Pesquisar</button>
+</form>
+<br>
 <button onclick="window.location.href='{{route('novocliente')}}';">
     Incluir novo cliente
 </button>
