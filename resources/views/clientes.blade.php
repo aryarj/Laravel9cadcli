@@ -4,6 +4,10 @@
 
 @section('content')
 <h1>Cadastro de novo cliente</h1>
+
+<!--Inclui mensagens de erro-->
+@include('modelos.errors')
+
 <form action="{{route('cliente.store')}}" method="POST">
     @include('modelos.form')
 </form>
@@ -11,6 +15,6 @@
     <button onclick="window.location.href='{{route('index')}}';">
         Visualizar clientes cadastrados
     </button>
-
+<br>
 
 @endsection

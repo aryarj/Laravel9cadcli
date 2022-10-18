@@ -14,11 +14,12 @@
     Incluir novo cliente
 </button>
 <br><br>
+
 @foreach ($cliente as $c)
     <li>
         {{$c->name}} - 
-        {{$c->cpf}} - 
-        {{$c->email}}
+        {{$c->email}} -
+        {{$c->cpf}}
         | <button onclick="window.location.href='{{route('cliente.edit',$c->id)}}';">
             Editar cliente
         </button>

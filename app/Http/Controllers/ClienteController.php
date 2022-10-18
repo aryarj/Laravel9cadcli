@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\RequestGeral;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 
@@ -8,12 +10,13 @@ use App\Models\Cliente;
 class ClienteController extends Controller
 {
 
-    public function incluir()
-    {
+    
+    public function incluir(Cliente $cliente)
+    {   
         return view('clientes');
     }
 
-    public function store(Request $request)
+    public function store(RequestGeral $request)
     {        
         //Para incluir os dados no BD
         Cliente::create($request->all());
@@ -26,32 +29,18 @@ class ClienteController extends Controller
         return view(('clienteConfirmaInclusao'));
     }
 
-    public function index(Request $request)
+    public function index(Request $request, Cliente $cliente)
     {
         //Uma das formas de pesquisar por filtro
         $search=$request->search;
-        //E ordenando na ordem crescente do nome
-        //Se quiser paginar, utilizar a função paginate() no final ao invéz de get()
-        //$cliente = Cliente::where('name', 'LIKE',"%{$request->search}%")
-        //->orderby('name','ASC')->paginate(5);
 
-        $cliente = Cliente::where(function ($query) use ($search)
-        {
-          if($search)
-          {
-            $query->where('name', 'LIKE',"%{$search}%");
-            $query->orWhere('email', 'LIKE',"%{$search}%");
-            $query->orWhere('cpf', 'LIKE',"%{$search}%");
-          }
-          
-        })->paginate(5);
+        //função getCliente na classe app/Models/Cliente
+        $cliente=$cliente->getCliente($search);
         
         //$cliente = Cliente::paginate(5);//funciona também como o: $cliente = DB::table('clientes')->paginate((5));
         // mas nesse último caso precisará chamar no início: use Illuminate\Support\Facades\DB;
         
-
         return view('index', compact('cliente'));
-        
     }
 
     public function edit($id)
@@ -63,7 +52,7 @@ class ClienteController extends Controller
       return view('edit', compact('cliente'));
     }
 
-    public function update(Request $request, $id)
+    public function update(RequestGeral $request, $id)
     {
       if(!$cliente=Cliente::find($id))
       {

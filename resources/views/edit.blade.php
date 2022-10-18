@@ -4,6 +4,10 @@
 
 @section('content')
 <h1>Editar cliente {{$cliente->name}}</h1>
+
+<!--Inclui mensagens de erro-->
+@include('modelos.errors')
+
     <form action="{{route('cliente.update',$cliente->id)}}" method="POST">
         <!--<input type="hidden" name="_method" value="PUT">-->
         <!--Que é igual a: @method('PUT')-->
